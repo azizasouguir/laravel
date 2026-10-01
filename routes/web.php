@@ -2,14 +2,16 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use Fruitcake\LaravelDebugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $posts = [];
     if (Auth::check()) {
         $posts = auth()->user()->usersCoolPosts()->latest()->get();
     }
+    // Debugbar::info("hiiiiii", $posts);
     return view('home', ['posts' => $posts]);
 });
 Route::post('/register', [UserController::class, 'register']);

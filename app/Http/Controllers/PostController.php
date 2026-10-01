@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use Fruitcake\LaravelDebugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController  extends Controller
@@ -27,7 +28,8 @@ class PostController  extends Controller
         $incomingFields['body'] = strip_tags($incomingFields['body']);
         $incomingFields['user_id'] = Auth::id(); //Get the logged-in user's ID
         //Laravel creates a new record in the posts table.
-        Post::create($incomingFields);
+        //  $posts= Post::create($incomingFields);
+        //  Debugbar::info("hiiiiii", $posts);
         return redirect('/');
     }
 
